@@ -2,7 +2,7 @@
   "name": "ip2geo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^9.0.2",
@@ -11,13 +11,18 @@
     "nodemon": "^2.0.7"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
+    "clean": "rm -Rf ./dist",
+    "build": "npm run clean; babel ./src --out-dir ./dist --copy-files",
+    "start": "npm run build; nodemon --exec babel-node ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.2",
     "@babel/node": "^7.14.2",
-    "@babel/preset-env": "^7.14.2"
+    "@babel/preset-env": "^7.14.2",
+    "babel-preset-env": "^1.7.0"
   }
 }
